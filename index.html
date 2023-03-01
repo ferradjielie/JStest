@@ -11,39 +11,23 @@
 </head>
 <body>
 
-    <div id="board>"></div> 
-    <!-- Test -->
-    
-    
-    
-    <script >   
+    <div id="board"></div> 
+  
+    <script>   
 
-    const box = document.createElement ("div")
+    const box = document.createElement("div")
     box.classList.add("box")
+   
+    const board = document.querySelector("#board")
+    // board.appendChild(box)
+    // box.innerText = 1
 
-    
+    for (let i =1; i <=10; i++) {
+        let newbox = box.cloneNode()
+        newbox.innerText = i
+        board.appendChild(newbox)
+    }
 
-
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     </script>
 
     
