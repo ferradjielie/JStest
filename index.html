@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,60 +10,115 @@
 
     <title>Document</title>
 </head>
+
 <body>
 
-    <div id="board"></div> 
-  
-    <script>   
+    <div id="board"></div>
 
-    const box = document.createElement("div")
-    box.classList.add("box")
-   
-    const board = document.querySelector("#board")
-    //bbbbbbbb  board.appendChild(box)
-    // box.innerText = 1
+    <script>
 
-    for (let i =1; i <=10; i++) {
-        let newbox = box.cloneNode()
-        newbox.innerText = i
-        board.appendChild(newbox)
-    }
-    let i = board.children.lenght, k , temp
-    while (--i > 0) {
-        k= Math.floor(Math.ramdom()* (i+1))
-        temp = board.children [k]
-        board.children [k]= board.children [i]
-        board.appendChild(temp)
+        // const box = document.createElement("div")
+        // box.classList.add("box")
 
-        function shuffleChildren (parent) {
+        // const board = document.querySelector("#board")
+        // board.appendChild(box)
+        // box.innerText = 1
+
+        // for (let i =1; i <=10; i++) {
+        //     let newbox = box.cloneNode()
+        //     newbox.innerText = i
+        //     board.appendChild(newbox)
+        // }
+        // let i = board.children.lenght, k , temp
+        // while (--i > 0) {
+        //     k= Math.floor(Math.ramdom()* (i+1))
+        //     temp = board.children [k]
+        //     board.children [k]= board.children [i]
+        //     board.appendChild(temp) 
+
+
+        function shuffleChildren(parent) {
             let children = parent.children
-            let i = children.lenght, k, temp
-            while(--i>0) {
-                k = Math.floor (Math.ramdom()* (i+1))
+            let i = children.length, k, temp
+            while (--i > 0) {
+                k = Math.floor(Math.random() * (i + 1))
                 temp = children[k]
-                children [k] = children [i]
-                parent.appendChild (temp)
+                children[k] = children[i]
+                parent.appendChild(temp)
 
             }
         }
+
+        function showReaction(type, clickedBox) {
+            console.log("ok")
+            clickedBox.classList.add(type)
+            if (type !== "success") {
+                setTimeout(function () {
+                    clickedBox.classList.remove(type)
+                }, 800)
+            }
+        }
+        // }
+
+
         const box = document.createElement("div")
         box.classList.add("box")
-        const board= document.querySelector("#board")
-        for(let i = 1; i <= 10; i++) {
-            const newbox = box.cloneNode ()
-            newbox.innerText = iboard.appendChild(newbox)
+
+        const board = document.querySelector("#board")
+
+        let nb = 1
+        for (let i = 1; i <= 10; i++) {
+            const newbox = box.cloneNode()
+            newbox.innerText = i
+            board.appendChild(newbox)
+
+            newbox.addEventListener("click", function () {
+                console.log("Boite n°" + i + ",click !")
+                newbox.classList.add("box-clicked")
+
+                if (i == nb) {
+                    newbox.classList.add("box-clicked")
+
+                    if (nb == board.children.length) {
+                        board.querySelectorAll(".box").forEach(function (box) {
+                            showReaction("success", box)
+                        })
+
+                        //alert("VICTOIRE")
+                    }
+                    nb++
+                }
+
+
+                else if (i > nb) {
+
+                    showReaction("error", newbox)
+
+
+                    // alert("Erreur, recommencez!")
+
+                    nb = 1
+
+                    board.querySelectorAll(".box-clicked").forEach(function (validBox) {
+                        validBox.classList.remove("box-clicked")
+                    })
+
+
+                }
+
+                else {
+                    showReaction("notice", newbox)
+                    //alert("Case déjà cliquée")
+                }
+
+            })
 
         }
-        
-    }
 
-    shuffleChildren(board)
-    
-
-
-
+        shuffleChildren(board)
     </script>
 
-    
+
 </body>
+
 </html>

@@ -16,14 +16,21 @@
    margin: 5px;
    animation: appear 1s;
    border-radius: 6px;
+   cursor : pointer;
+   transition: background-color 0.8s, color 0.8s, transform 0.8;
 
 
  }
 
  .box-clicked {
-    background-color:  #cccc;
+    background-color:  #ccc;
     color: #aaa;
+    transform: scale(0.8);
  }
+
+ .box.error { color: rgb(144,58,58); background-color: rgb(225, 160, 190);}
+ .box.success { color: rgb(18, 16,151); background-color: rgb(172,251,172);}
+ .box.notice { color: rgb(18,16,151); background-color: rgb(184,217,255); cursor: not-allowed;}
 
  @keyframes appear {
     from {
